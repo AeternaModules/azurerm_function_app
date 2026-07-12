@@ -73,7 +73,7 @@ resource "azurerm_function_app" "function_apps" {
   }
 
   dynamic "connection_string" {
-    for_each = each.value.connection_string != null ? [each.value.connection_string] : []
+    for_each = each.value.connection_string != null ? each.value.connection_string : []
     content {
       name  = connection_string.value.name
       type  = connection_string.value.type
@@ -108,7 +108,7 @@ resource "azurerm_function_app" "function_apps" {
       health_check_path        = site_config.value.health_check_path
       http2_enabled            = site_config.value.http2_enabled
       dynamic "ip_restriction" {
-        for_each = site_config.value.ip_restriction != null ? [site_config.value.ip_restriction] : []
+        for_each = site_config.value.ip_restriction != null ? site_config.value.ip_restriction : []
         content {
           action = ip_restriction.value.action
           dynamic "headers" {
@@ -133,7 +133,7 @@ resource "azurerm_function_app" "function_apps" {
       pre_warmed_instance_count        = site_config.value.pre_warmed_instance_count
       runtime_scale_monitoring_enabled = site_config.value.runtime_scale_monitoring_enabled
       dynamic "scm_ip_restriction" {
-        for_each = site_config.value.scm_ip_restriction != null ? [site_config.value.scm_ip_restriction] : []
+        for_each = site_config.value.scm_ip_restriction != null ? site_config.value.scm_ip_restriction : []
         content {
           action = scm_ip_restriction.value.action
           dynamic "headers" {
