@@ -12,7 +12,7 @@ output "function_apps_app_settings" {
 }
 output "function_apps_auth_settings" {
   description = "Map of auth_settings values across all function_apps, keyed the same as var.function_apps"
-  value       = { for k, v in azurerm_function_app.function_apps : k => v.auth_settings if v.auth_settings != null && length(v.auth_settings) > 0 }
+  value       = { for k, v in azurerm_function_app.function_apps : k => one(v.auth_settings) if v.auth_settings != null && length(v.auth_settings) > 0 }
   sensitive   = true
 }
 output "function_apps_client_cert_mode" {
@@ -50,7 +50,7 @@ output "function_apps_https_only" {
 }
 output "function_apps_identity" {
   description = "Map of identity values across all function_apps, keyed the same as var.function_apps"
-  value       = { for k, v in azurerm_function_app.function_apps : k => v.identity if v.identity != null && length(v.identity) > 0 }
+  value       = { for k, v in azurerm_function_app.function_apps : k => one(v.identity) if v.identity != null && length(v.identity) > 0 }
 }
 output "function_apps_key_vault_reference_identity_id" {
   description = "Map of key_vault_reference_identity_id values across all function_apps, keyed the same as var.function_apps"
@@ -86,7 +86,7 @@ output "function_apps_resource_group_name" {
 }
 output "function_apps_site_config" {
   description = "Map of site_config values across all function_apps, keyed the same as var.function_apps"
-  value       = { for k, v in azurerm_function_app.function_apps : k => v.site_config if v.site_config != null && length(v.site_config) > 0 }
+  value       = { for k, v in azurerm_function_app.function_apps : k => one(v.site_config) if v.site_config != null && length(v.site_config) > 0 }
 }
 output "function_apps_site_credential" {
   description = "Map of site_credential values across all function_apps, keyed the same as var.function_apps"
@@ -94,7 +94,7 @@ output "function_apps_site_credential" {
 }
 output "function_apps_source_control" {
   description = "Map of source_control values across all function_apps, keyed the same as var.function_apps"
-  value       = { for k, v in azurerm_function_app.function_apps : k => v.source_control if v.source_control != null && length(v.source_control) > 0 }
+  value       = { for k, v in azurerm_function_app.function_apps : k => one(v.source_control) if v.source_control != null && length(v.source_control) > 0 }
 }
 output "function_apps_storage_account_access_key" {
   description = "Map of storage_account_access_key values across all function_apps, keyed the same as var.function_apps"
